@@ -1,4 +1,4 @@
 SHELL_CONFIG=$HOME/etc/zsh
 
 source $SHELL_CONFIG/prezto/init.zsh
-source $SHELL_CONFIG/aliases
+source $SHELL_CONFIG/alias-tips/alias-tips.plugin.zsh
