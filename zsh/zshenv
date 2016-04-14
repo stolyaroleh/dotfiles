@@ -1,0 +1,4 @@
+GHC_PATH=$HOME/.stack/programs/x86_64-linux/ghc-7.10.3/bin
+export PATH=$HOME/bin:$GHC_PATH:$PATH
+
+export EDITOR='vim'
