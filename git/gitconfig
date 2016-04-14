@@ -1,0 +1,9 @@
+[user]
+	name = Oleh Stolyar
+	email = stolyar.oleh@gmail.com
+[alias]
+	lol = log --oneline --graph --decorate
+[push]
+	default = simple
+[core]
+	editor = vim
