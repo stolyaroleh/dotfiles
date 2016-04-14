@@ -18,20 +18,20 @@ zstyle ':prezto:*:*' color 'yes'
 # The order matters.
 zstyle ':prezto:load' pmodule \
        'environment' \
-       'autosuggestions' \
        'terminal' \
        'editor' \
        'history' \
        'directory' \
        'spectrum' \
        'utility' \
+       'ssh' \
        'completion' \
+       'autosuggestions' \
        'fasd' \
        'git' \
-       'ssh' \
-       'prompt' \
        'syntax-highlighting' \
-       'history-substring-search'
+       'history-substring-search' \
+       'prompt'
 
 #
 # Editor
