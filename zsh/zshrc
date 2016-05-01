@@ -5,3 +5,7 @@ source $SHELL_CONFIG/alias-tips/alias-tips.plugin.zsh
 
 bindkey -a u undo
 bindkey -a '^R' redo
+
+alias la='ls -a'
+
+alias gs='git status'

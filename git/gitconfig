@@ -7,3 +7,5 @@
 	default = simple
 [core]
 	editor = vim
+[help]
+	autocorrect = true
