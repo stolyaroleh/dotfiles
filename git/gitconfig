@@ -8,4 +8,4 @@
 [core]
 	editor = vim
 [help]
-	autocorrect = true
+	autocorrect = 10 

@@ -24,10 +24,11 @@ values."
      ipython-notebook
      javascript
      latex
+     lua
      markdown
      org
      (haskell :variables
-              haskell-enable-hindent-style "chris-done"
+              haskell-enable-hindent-style "gibiansky"
               ;; TODO(Oleh): figure out how to make this work.
               haskell-enable-shm-support nil)
      python
@@ -283,6 +284,11 @@ in `dotspacemacs/user-config'."
    ;; Python
    anaconda-mode-server-script "/home/stolyaroleh/.local/lib/python2.7/site-packages/anaconda_mode.py"
    )
+
+  ;; Haskell Refactoring
+  (add-to-load-path "/home/stolyaroleh/.stack/snapshots/x86_64-linux/lts-5.15/7.10.3/share/x86_64-linux-ghc-7.10.3/HaRe-0.8.2.3/elisp")
+  (require 'hare)
+  (autoload 'hare-init "hare" nil t)
   )
 
 (defun dotspacemacs/user-config ()
@@ -302,6 +308,8 @@ layers configuration. You are free to put any user code."
   ;; Haskell
   (spacemacs/set-leader-keys-for-major-mode 'haskell-mode "t" 'ghc-show-type)
   (spacemacs/set-leader-keys-for-major-mode 'haskell-mode "i" 'ghc-show-info)
+  (spacemacs/set-leader-keys-for-major-mode 'haskell-mode "r" 'hare-refactor-rename)
+  (add-hook 'haskell-mode-hook (lambda () (ghc-init) (hare-init)))
   )
 
 
