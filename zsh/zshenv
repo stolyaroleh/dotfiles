@@ -1,7 +1,0 @@
-GHC_PATH=$HOME/.stack/programs/x86_64-linux/ghc-7.10.3/bin
-export PATH=$HOME/bin:$HOME/.local/bin:$GHC_PATH:$PATH
-
-export EDITOR='vim'
-
-export _FASD_MAX=5000
-export _FASD_BACKENDS="native recently-used current"
