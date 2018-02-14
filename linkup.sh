@@ -10,5 +10,6 @@ stow intellij
 stow spacemacs
 stow xmonad
 stow zsh
+stow --target=~/.config vscode
 
 popd

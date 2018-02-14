@@ -1,0 +1,20 @@
+{
+    "editor.fontFamily": "Hasklig Medium, monospace",
+    "editor.fontSize": 18,
+    "editor.fontLigatures": true,
+    "editor.wordWrapColumn": 120,
+
+    "stylishHaskell.commandLine": "$HOME/.local/bin/stylish-haskell",
+    "stylishHaskell.showConsoleOnError": false,
+
+    "vim.useCtrlKeys": false,
+
+    "window.menuBarVisibility": "toggle",
+    "window.restoreWindows": "none",
+
+    "workbench.startupEditor": "none",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.statusBar.visible": false,
+    "workbench.activityBar.visible": false,
+    "workbench.editor.showTabs": true
+}
