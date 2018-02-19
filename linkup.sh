@@ -9,6 +9,7 @@ stow git
 stow intellij
 stow spacemacs
 stow xmonad
+stow --target=$HOME/.config/termite termite
 stow zsh
 stow --target=$HOME/.config vscode
 
