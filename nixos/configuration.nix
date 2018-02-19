@@ -2,7 +2,7 @@
 {
   imports =
     [
-       ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
     ];
 
   nix.nixPath = [
@@ -22,15 +22,11 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [
-    "nomodeset"
-    "quiet"
-  ];
 
   networking = {
-    hostName = "1700X-nixos";
+    hostName = "jarvis";
     networkmanager.enable = true;
-    firewall.enable = false;
+    firewall.enable = true;
   };
 
   i18n = {
@@ -41,7 +37,7 @@
 
   time = {
     hardwareClockInLocalTime = true;
-    timeZone = "Europe/Sofia";
+    timeZone = "Europe/London";
   };
 
   environment.systemPackages = with pkgs; [
@@ -50,13 +46,11 @@
     vlc
 
     # shell
+    bash
     fasd
     termite
     thefuck
     zsh
-
-    # notifications
-    dunst
 
     # mate
     mate.mate-themes
@@ -100,13 +94,13 @@
     zip unzip
   ];
 
-  users.extraUsers.stolyaroleh = {
+  users.extraUsers."oleh.stolyar" = {
     description = "Oleh Stolyar";
     isNormalUser = true;
 
     shell = pkgs.zsh;
 
-    home = "/home/stolyaroleh";
+    home = "/home/oleh.stolyar";
     createHome = true;
 
     extraGroups = ["audio" "networkmanager" "wheel"];
@@ -124,20 +118,18 @@
   services.xserver = {
     enable = true;
     layout = "us,ru,ua";
-    videoDrivers = [ "nvidia" ];
 
     # caps lock -> ctrl
     xkbOptions = "ctrl:nocaps";
 
     desktopManager = {
-      default = "gnome3";
-      gnome3.enable = true;
+      default = "mate";
       mate.enable = true;
       xterm.enable = false;
     };
 
     displayManager = {
-      gdm.enable = true;
+      lightdm.enable = true;
     };
 
     windowManager = {
@@ -153,17 +145,6 @@
 
     serviceConfig = {
       ExecStart = "${pkgs.xbanish}/bin/xbanish";
-      Restart = "always";
-    };
-  };
-
-  systemd.user.services.dunst = {
-    enable = true;
-    description = "dunst daemon";
-    wantedBy = [ "default.target" ];
-
-    serviceConfig = {
-      ExecStart = "${pkgs.dunst}/bin/dunst";
       Restart = "always";
     };
   };
