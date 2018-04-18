@@ -1,37 +1,36 @@
-import qualified Data.Map                            as M
+import qualified Data.Map                       as M
 import           Graphics.X11.ExtraTypes.XF86
+import           MyLayout
+import           MyTheme
+import           System.Directory
 import           XMonad
 import           XMonad.Actions.CycleRecentWS
 import           XMonad.Actions.DynamicProjects
-import qualified XMonad.Actions.Search               as S
-import           XMonad.Actions.SinkAll              (sinkAll)
-import qualified XMonad.Actions.Submap               as SM
-import           XMonad.Actions.WorkspaceNames       (renameWorkspace)
-import           XMonad.Config.Mate                  (mateConfig)
-import           XMonad.Hooks.EwmhDesktops           (fullscreenEventHook)
-import           XMonad.Hooks.ManageDocks            (avoidStruts, docks, manageDocks)
-import           XMonad.Hooks.ManageHelpers          (doFullFloat, isFullscreen)
+import qualified XMonad.Actions.Search          as S
+import           XMonad.Actions.SinkAll         (sinkAll)
+import qualified XMonad.Actions.Submap          as SM
+import           XMonad.Actions.WorkspaceNames  (renameWorkspace)
+import           XMonad.Config.Mate             (mateConfig)
+import           XMonad.Hooks.EwmhDesktops      (fullscreenEventHook)
+import           XMonad.Hooks.ManageDocks       (docks, manageDocks)
+import           XMonad.Hooks.ManageHelpers     (doFullFloat, isFullscreen)
 import           XMonad.Layout
 import           XMonad.Layout.Grid
-import           XMonad.Layout.MultiToggle           (Toggle (..), mkToggle, single)
-import           XMonad.Layout.MultiToggle.Instances
-import           XMonad.Layout.NoBorders             (smartBorders)
-import           XMonad.Layout.Tabbed                (simpleTabbed)
-import           XMonad.Operations                   (kill)
+import           XMonad.Layout.NoBorders        (smartBorders)
+import           XMonad.Layout.Tabbed           (simpleTabbed)
+import           XMonad.Operations              (kill)
 import           XMonad.Prompt
-import           XMonad.Util.EZConfig                (additionalKeys, checkKeymap, removeKeys)
-import           XMonad.Util.Paste                   (sendKey)
-import           XMonad.Util.Run                     (safeSpawn, unsafeSpawn)
-
--- PROMPT
-myPrompt :: XPConfig
-myPrompt = def
+import           XMonad.Util.EZConfig           (additionalKeys, checkKeymap,
+                                                 removeKeys)
+import           XMonad.Util.Paste              (sendKey)
+import           XMonad.Util.Run                (safeSpawn, unsafeSpawn)
 
 -- TODO (altercation/dotfiles-tilingwm):
 -- named keybindings? EZConfig?
 -- screencast, screenshot
 -- Window on all workspaces
--- Windows + up/down to toggle full screen layout?
+-- Workspace-based Chrome profiles
+-- Named Scratchpads
 
 -- KEYS
 type KeyCombo = (KeyMask, KeySym)
@@ -47,23 +46,16 @@ volumeKeys =
   , ((super, xK_bracketright), sendKey def xF86XK_AudioRaiseVolume)
   ]
 
-layoutKeys :: [Keybinding]
-layoutKeys =
-  [ -- tile all floating windows
-    ((super .|. shiftMask, xK_t), sinkAll)
-  , -- toggle mirror
-    ((super, xK_m), sendMessage $ Toggle MIRROR)
-    -- toggle between layouts
-  , ((super, xK_grave), sendMessage NextLayout)
-  ]
-
 appKeys :: [Keybinding]
-appKeys = start <$>
+appKeys = map start
  [ (xK_b, "google-chrome-stable")
+ , (xK_p, launcher)
  ]
  where
   start :: (KeySym, String) -> Keybinding
   start (key, app) = ((super .|. shiftMask, key), safeSpawn app [])
+  launcher :: String
+  launcher = "synapse"
 
 promptKeys :: [Keybinding]
 promptKeys =
@@ -89,7 +81,7 @@ workspaceKeys =
 myKeys :: [Keybinding]
 myKeys = concat
  [ appKeys
- , layoutKeys
+ , layoutKeys super
  , promptKeys
  , volumeKeys
  , workspaceKeys
@@ -97,34 +89,24 @@ myKeys = concat
 
 removedDefaults :: [KeyCombo]
 removedDefaults =
-  [ -- toggle between layouts
+  [ -- launcher
+    (super, xK_p)
+  , -- toggle between layouts
     (super, xK_space)
-    -- set default layout
-  , (super .|. shiftMask, xK_space)
-    -- kill active window
-  , (super .|. shiftMask, xK_c)
+  , -- set default layout
+    (super .|. shiftMask, xK_space)
+  , -- kill active window
+    (super .|. shiftMask, xK_c)
   ]
-
--- LAYOUTS
-myLayout = smartBorders
-         $ avoidStruts
-         $ mirrorToggle
-         $ tiled ||| Grid ||| Full
-  where
-    -- Default tiling algorithm partitions the screen into two panes
-    tiled   = Tall nmaster delta ratio
-    -- The default number of windows in the master pane
-    nmaster = 1
-    -- Default proportion of screen occupied by master pane
-    ratio   = 1 / 2
-    -- Percent of screen to increment by when resizing panes
-    delta   = 3 / 100
-    mirrorToggle = mkToggle (single MIRROR)
 
 -- PROJECTS
 myProjects :: [Project]
 myProjects =
-  [ Project { projectName = "email"
+  [ Project { projectName = "gen"
+            , projectDirectory = "~/"
+            , projectStartHook = Nothing
+            }
+  , Project { projectName = "email"
             , projectDirectory = "~/Desktop"
             , projectStartHook = Just $ safeSpawn "google-chrome-stable" ["inbox.google.com", "--new-window"]
             }
@@ -140,11 +122,9 @@ myProjects =
             }
 
   , Project { projectName = "config"
-            , projectDirectory = "~/"
+            , projectDirectory = "~/dotfiles"
             , projectStartHook = Just $ do
-                safeSpawn "code" ["-n"]
-                safeSpawn "code" ["-add", ".xmonad", "src/xmonad", "src/xmonad-contrib", "/etc/nixos"]
-                safeSpawn "termite" []
+                safeSpawn "code" ["-n", "."]
             }
   ]
 
@@ -156,7 +136,7 @@ myManageHook = composeAll
 
 myConfig = docks $ mateConfig
   { modMask = super
-  , borderWidth = 1
+  , borderWidth = 0
   , handleEventHook = fullscreenEventHook
   , layoutHook = myLayout
   , manageHook = myManageHook
@@ -164,6 +144,9 @@ myConfig = docks $ mateConfig
   }
   `additionalKeys` myKeys
   `removeKeys` removedDefaults
+
+hardRestart :: IO ()
+hardRestart = return ()
 
 main :: IO ()
 main = xmonad $ dynamicProjects myProjects myConfig

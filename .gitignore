@@ -2,4 +2,4 @@ vscode
 !vscode/Code/User/settings.json
 
 xmonad
-!xmonad/xmonad.hs
+!xmonad/**/*.hs
