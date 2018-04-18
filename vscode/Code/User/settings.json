@@ -1,9 +1,19 @@
 {
     "editor.fontFamily": "Hasklig Medium, monospace",
-    "editor.fontSize": 18,
+    "editor.fontSize": 16,
     "editor.fontLigatures": true,
     "editor.wordWrapColumn": 120,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
 
+    // "powermode.enabled": true,
+
+    "[haskell]": {
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false,
+    },
+
+    "stylishHaskell.runOnSave": false,
     "stylishHaskell.commandLine": "$HOME/.local/bin/stylish-haskell",
     "stylishHaskell.showConsoleOnError": false,
 
@@ -15,6 +25,22 @@
     "workbench.startupEditor": "none",
     "workbench.iconTheme": "vscode-icons",
     "workbench.statusBar.visible": false,
-    "workbench.activityBar.visible": false,
-    "workbench.editor.showTabs": true
+    "workbench.editor.showTabs": true,
+    "window.zoomLevel": 0,
+    "diffEditor.ignoreTrimWhitespace": true,
+    "rust.rustup": {
+        "toolchain": "nightly-x86_64-unknown-linux-gnu",
+        "nightlyToolchain": "nightly-x86_64-unknown-linux-gnu"
+    },
+    "rust.mode": "legacy",
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": true,
+        "suppressShowKeyBindingsNotice": true
+    }
 }
