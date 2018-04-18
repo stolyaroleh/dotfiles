@@ -13,3 +13,12 @@
 [submodule "base16-shell"]
 	path = zsh/base16-shell
 	url = https://github.com/chriskempson/base16-shell
+[submodule "spacemacs/.emacs.d"]
+	path = spacemacs/.emacs.d
+	url = https://github.com/syl20bnr/spacemacs
+[submodule "zsh/autoenv"]
+	path = zsh/autoenv
+	url = git://github.com/kennethreitz/autoenv.git
+[submodule "intellij/base16-jetbrains"]
+	path = intellij/base16-jetbrains
+	url = https://github.com/adilosa/base16-jetbrains
