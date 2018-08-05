@@ -2,4 +2,7 @@ vscode
 !vscode/Code/User/settings.json
 
 xmonad
-!xmonad/**/*.hs
+!xmonad/*.cabal
+!xmonad/*.hs
+!xmonad/*.nix
+!xmonad/.xmonad/build

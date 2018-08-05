@@ -2,7 +2,6 @@ import qualified Data.Map                       as M
 import           Graphics.X11.ExtraTypes.XF86
 import           MyLayout
 import           MyTheme
-import           System.Directory
 import           XMonad
 import           XMonad.Actions.CycleRecentWS
 import           XMonad.Actions.DynamicProjects
