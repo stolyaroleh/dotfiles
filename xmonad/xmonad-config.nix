@@ -10,7 +10,7 @@
 , X11
 }:
 mkDerivation {
-  pname = "xmonad-config";
+  pname = "xmonad";
   version = "0.0.0";
   src = lib.sourceFilesBySuffices ./. [
     ".cabal"

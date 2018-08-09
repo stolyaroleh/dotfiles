@@ -6,3 +6,4 @@ xmonad
 !xmonad/*.hs
 !xmonad/*.nix
 !xmonad/.xmonad/build
+
