@@ -128,6 +128,18 @@ myProjects =
             }
   ]
 
+myWorkspaces =
+  [ "gen"
+  , "web"
+  , "email"
+  , "vlc"
+  , "config"
+  ]
+  ++ repeat 3 "code"
+  where
+    repeat n tag =
+      [tag ++ "-" ++ show index | index <- [1..n]]
+
 myManageHook = composeAll
   [ manageHook mateConfig
   , manageDocks
@@ -146,6 +158,7 @@ myConfig = docks $ mateConfig
   , layoutHook = myLayout
   , manageHook = myManageHook
   , terminal = "termite"
+  , workspaces = myWorkspaces
   }
   `additionalKeys` myKeys
   `removeKeys` removedDefaults
