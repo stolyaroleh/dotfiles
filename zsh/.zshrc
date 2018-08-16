@@ -14,6 +14,8 @@ source $HOME/dotfiles/zsh/prezto/init.zsh
 source $HOME/.cargo/env
 source $HOME/.workrc
 
+export TERM=xterm-color
+
 # fasd
 alias d='fasd -d'
 alias f='fasd -f'
@@ -21,4 +23,6 @@ alias f='fasd -f'
 # aliases
 alias la='ls -a'
 alias gs='git status'
+alias gd='git diff --word-diff=color'
+alias gds='git diff --word-diff=color --staged'
 
