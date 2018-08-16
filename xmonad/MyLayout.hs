@@ -1,14 +1,22 @@
 {-# LANGUAGE FlexibleInstances     #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE PartialTypeSignatures #-}
-module MyLayout (
-  myLayout,
-  layoutKeys
-) where
+module MyLayout
+  ( myLayout
+  , myNav2DConfig
+  , layoutKeys
+  ) where
 
 import           MyTheme
 import           XMonad
 import           XMonad.Actions.SinkAll              (sinkAll)
+import           XMonad.Actions.Navigation2D         (Navigation2DConfig(..)
+                                                     , centerNavigation
+                                                     , lineNavigation
+                                                     , singleWindowRect
+                                                     , windowGo
+                                                     , windowSwap
+                                                     )
 import           XMonad.Hooks.ManageDocks            (avoidStruts)
 import           XMonad.Layout.Accordion
 import           XMonad.Layout.Decoration
@@ -20,31 +28,39 @@ import           XMonad.Layout.Renamed
 import           XMonad.Layout.ResizableTile
 import           XMonad.Layout.SimpleDecoration
 import           XMonad.Layout.Simplest
-import           XMonad.Layout.Spacing
+import           XMonad.Layout.Spacing (Border(..), spacingRaw)
 import           XMonad.Layout.SubLayouts
 import           XMonad.Layout.Tabbed
-import           XMonad.Layout.WindowNavigation
+import           XMonad.Layout.WindowNavigation (windowNavigation)
 
 type Keybinding = (KeyCombo, X ())
 type KeyCombo = (KeyMask, KeySym)
 
+
+myNav2DConfig :: Navigation2DConfig
+myNav2DConfig = def
+  { defaultTiledNavigation    = centerNavigation
+  , floatNavigation           = centerNavigation
+  , screenNavigation          = lineNavigation
+  , layoutNavigation          = [("Full", centerNavigation)]
+  , unmappedWindowRect        = [("Full", singleWindowRect)]
+  }
+
 addTopBar = noFrillsDeco shrinkText myTopBarTheme
 
 gap = 5
-mySpacing = smartSpacingWithEdge gap
+-- mySpacing = spacing gap
 
 myFlex = trimNamed 5 "Flex"
        $ windowNavigation
        $ addTopBar
        $ addTabs shrinkText myTabTheme
-       -- $ mySpacing
-       $ subLayout [] (Simplest ||| Accordion)
-       $ standardLayouts
+       $ subLayout [] Simplest
+       $ tall
   where
     trimNamed w n = renamed [ (CutWordsLeft w), (PrependWords n) ]
     suffixed n = renamed [ (AppendWords n) ]
-    standardLayouts = (suffixed "Std 2/3" $ ResizableTall 1 (1/20) (2/3) [])
-                  ||| (suffixed "Std 1/2" $ ResizableTall 1 (1/20) (1/2) [])
+    tall = suffixed "Std 1/2" $ ResizableTall 1 (1/20) (1/2) []
 
 myTabs = tabbed shrinkText myTabTheme
 
@@ -58,21 +74,33 @@ myLayout = avoidStruts
 
 layoutKeys :: KeyMask -> [Keybinding]
 layoutKeys super =
-  [ -- tile all floating windows
+  [ -- Tile all floating windows
     ((super .|. shiftMask, xK_t), sinkAll)
-  , -- toggle full
+  , -- Toggle full screen
     ((super, xK_Return), sendMessage $ Toggle FULL)
-  , -- toggle mirror
+  , -- Toggle mirror
     ((super, xK_m), sendMessage $ Toggle MIRROR)
-    -- toggle between layouts
+    -- Toggle between layouts
   , ((super, xK_grave), sendMessage NextLayout)
-    -- window navigation
-  , ((super,                 xK_Right), sendMessage $ Go R)
-  , ((super,                 xK_Left ), sendMessage $ Go L)
-  , ((super,                 xK_Up   ), sendMessage $ Go U)
-  , ((super,                 xK_Down ), sendMessage $ Go D)
-  , ((super .|. controlMask, xK_Right), sendMessage $ Swap R)
-  , ((super .|. controlMask, xK_Left ), sendMessage $ Swap L)
-  , ((super .|. controlMask, xK_Up   ), sendMessage $ Swap U)
-  , ((super .|. controlMask, xK_Down ), sendMessage $ Swap D)
+
+    -- Directional window navigation
+  , ((super,                 xK_Right), windowGo R True)
+  , ((super,                 xK_Left ), windowGo L True)
+  , ((super,                 xK_Up   ), windowGo U True)
+  , ((super,                 xK_Down ), windowGo D True)
+  , ((super .|. controlMask, xK_Right), windowSwap R True)
+  , ((super .|. controlMask, xK_Left ), windowSwap L True)
+  , ((super .|. controlMask, xK_Up   ), windowSwap U True)
+  , ((super .|. controlMask, xK_Down ), windowSwap D True)
+
+  -- Sublayouts
+  , ((super .|. shiftMask, xK_h), sendMessage $ pullGroup L)
+  , ((super .|. shiftMask, xK_l), sendMessage $ pullGroup R)
+  , ((super .|. shiftMask, xK_k), sendMessage $ pullGroup U)
+  , ((super .|. shiftMask, xK_j), sendMessage $ pullGroup D)
+
+    -- Merge all into sublayout
+  , ((super, xK_m), withFocused (sendMessage . MergeAll))
+    -- Un-merge from sublayout
+  , ((super .|. shiftMask, xK_m), withFocused (sendMessage . UnMerge))
   ]

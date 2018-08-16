@@ -5,6 +5,7 @@ import           MyTheme
 import           XMonad
 import           XMonad.Actions.CycleRecentWS
 import           XMonad.Actions.DynamicProjects
+import           XMonad.Actions.Navigation2D    (withNavigation2DConfig)
 import qualified XMonad.Actions.Search          as S
 import           XMonad.Actions.SinkAll         (sinkAll)
 import qualified XMonad.Actions.Submap          as SM
@@ -12,12 +13,12 @@ import           XMonad.Actions.WorkspaceNames  (renameWorkspace)
 import           XMonad.Config.Mate             (mateConfig)
 import           XMonad.Hooks.EwmhDesktops      (fullscreenEventHook)
 import           XMonad.Hooks.ManageDocks       (docks, manageDocks)
-import           XMonad.Hooks.ManageHelpers     (doFullFloat, isFullscreen)
+import           XMonad.Hooks.ManageHelpers     (doFullFloat, isInProperty, isFullscreen)
 import           XMonad.Layout
 import           XMonad.Layout.Grid
 import           XMonad.Layout.NoBorders        (smartBorders)
 import           XMonad.Layout.Tabbed           (simpleTabbed)
-import           XMonad.Operations              (kill)
+import           XMonad.Operations              (kill, reveal)
 import           XMonad.Prompt
 import           XMonad.Util.EZConfig           (additionalKeys, checkKeymap,
                                                  removeKeys)
@@ -132,6 +133,11 @@ myManageHook = composeAll
   , manageDocks
   , isFullscreen --> doFullFloat
   ]
+  where
+    isJetbrainsIDE :: Query Bool
+    isJetbrainsIDE =
+      className =? "jetbrains-pycharm-ce" <||>
+      className =? "jetbrains-clion"
 
 myConfig = docks $ mateConfig
   { modMask = super
@@ -144,8 +150,7 @@ myConfig = docks $ mateConfig
   `additionalKeys` myKeys
   `removeKeys` removedDefaults
 
-hardRestart :: IO ()
-hardRestart = return ()
-
 main :: IO ()
-main = xmonad $ dynamicProjects myProjects myConfig
+main = xmonad
+  $ withNavigation2DConfig myNav2DConfig
+  $ dynamicProjects myProjects myConfig
