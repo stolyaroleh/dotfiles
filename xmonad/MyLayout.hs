@@ -88,16 +88,16 @@ layoutKeys super =
   , ((super,                 xK_Left ), windowGo L True)
   , ((super,                 xK_Up   ), windowGo U True)
   , ((super,                 xK_Down ), windowGo D True)
-  , ((super .|. controlMask, xK_Right), windowSwap R True)
-  , ((super .|. controlMask, xK_Left ), windowSwap L True)
-  , ((super .|. controlMask, xK_Up   ), windowSwap U True)
-  , ((super .|. controlMask, xK_Down ), windowSwap D True)
+  , ((super .|. shiftMask, xK_Right), windowSwap R True)
+  , ((super .|. shiftMask, xK_Left ), windowSwap L True)
+  , ((super .|. shiftMask, xK_Up   ), windowSwap U True)
+  , ((super .|. shiftMask, xK_Down ), windowSwap D True)
 
   -- Sublayouts
-  , ((super .|. shiftMask, xK_h), sendMessage $ pullGroup L)
-  , ((super .|. shiftMask, xK_l), sendMessage $ pullGroup R)
-  , ((super .|. shiftMask, xK_k), sendMessage $ pullGroup U)
-  , ((super .|. shiftMask, xK_j), sendMessage $ pullGroup D)
+  , ((super .|. controlMask, xK_h), sendMessage $ pullGroup L)
+  , ((super .|. controlMask, xK_l), sendMessage $ pullGroup R)
+  , ((super .|. controlMask, xK_k), sendMessage $ pullGroup U)
+  , ((super .|. controlMask, xK_j), sendMessage $ pullGroup D)
 
     -- Merge all into sublayout
   , ((super, xK_m), withFocused (sendMessage . MergeAll))
