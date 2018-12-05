@@ -42,8 +42,15 @@
 
   environment.systemPackages = with pkgs; [
     google-chrome
-    gimp
     vlc
+
+    # screenshots
+    flameshot
+
+    # drawing
+    gimp
+    krita
+    libwacom
 
     # shell
     bash
@@ -55,6 +62,9 @@
     # mate
     mate.mate-themes
 
+    # theorem proving
+    lean
+
     # code
     binutils
     cloc
@@ -62,13 +72,16 @@
     gcc7
     git
     gnumake
+    jetbrains.pycharm-community
+    jetbrains.clion
     python36
-    stack
+    rustup
     tldr
     vim
     vscode
 
     # fonts
+    fira-code
     hasklig
     source-code-pro
 
@@ -76,11 +89,17 @@
     xdotool
     xorg.xev
 
+    # smarkets and shit
+    minikube
+    kubectl
+    kubernetes-helm
+
     # system
     coreutils
     curl
     findutils
     file
+    fuse
     exfat
     ffmpeg
     htop
@@ -94,16 +113,22 @@
     zip unzip
   ];
 
-  users.extraUsers."oleh.stolyar" = {
+  users.extraUsers."oleh" = {
     description = "Oleh Stolyar";
     isNormalUser = true;
 
     shell = pkgs.zsh;
 
-    home = "/home/oleh.stolyar";
+    home = "/home/oleh";
     createHome = true;
 
-    extraGroups = ["audio" "networkmanager" "wheel"];
+    extraGroups = [
+      "audio"
+      "docker"
+      "networkmanager"
+      "vboxusers"
+      "wheel"
+    ];
   };
 
   programs.zsh = {
@@ -112,6 +137,13 @@
       export PATH=$PATH:~/.local/bin
       export FZF_PATH="${pkgs.fzf.bin}"
     '';
+  };
+
+  virtualisation.docker.enable = true;
+  virtualisation.virtualbox = {
+    guest.enable = true;
+    host.enable = true;
+    host.enableHardening = false;
   };
 
   services.openssh.enable = true;
@@ -124,19 +156,20 @@
     xkbOptions = "ctrl:nocaps";
 
     desktopManager = {
-      default = "mate";
-      mate.enable = true;
+      default = "plasma5";
+      plasma5.enable = true;
       xterm.enable = false;
     };
 
     displayManager = {
-      lightdm.enable = true;
+      sddm.enable = true;
     };
 
     windowManager = {
       xmonad.enable = true;
-      xmonad.enableContribAndExtras = true;
     };
+
+    wacom.enable = true;
   };
 
   systemd.user.services.xbanish = {
@@ -150,9 +183,6 @@
     };
   };
 
-  environment.shellAliases = {
-    lsa = "ls -lahF";
-  };
-
-  system.stateVersion = "17.09";
+  system.autoUpgrade.enable = true;
+  system.stateVersion = "18.09";
 }
