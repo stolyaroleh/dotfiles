@@ -6,7 +6,6 @@ source $HOME/dotfiles/zsh/alias-tips/alias-tips.plugin.zsh
 source $HOME/dotfiles/zsh/autoenv/activate.sh
 source $HOME/dotfiles/zsh/prezto/init.zsh
 
-source $HOME/.cargo/env
 source $HOME/.workrc
 
 # fzf
