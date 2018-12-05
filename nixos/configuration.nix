@@ -48,8 +48,8 @@
     # shell
     bash
     fasd
-    termite
-    thefuck
+    fzf
+    kitty
     zsh
 
     # mate
@@ -110,6 +110,7 @@
     enable = true;
     shellInit = ''
       export PATH=$PATH:~/.local/bin
+      export FZF_PATH="${pkgs.fzf.bin}"
     '';
   };
 

@@ -157,7 +157,7 @@ myConfig = docks $ mateConfig
   , handleEventHook = fullscreenEventHook
   , layoutHook = myLayout
   , manageHook = myManageHook
-  , terminal = "termite"
+  , terminal = "kitty"
   , workspaces = myWorkspaces
   }
   `additionalKeys` myKeys
