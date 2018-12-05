@@ -18,6 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     erlang
      c-c++
      csharp
      emacs-lisp
@@ -31,6 +32,7 @@ values."
               haskell-enable-hindent-style "gibiansky"
               ;; TODO(Oleh): figure out how to make this work.
               haskell-enable-shm-support nil)
+     nixos
      python
      shell-scripts
      yaml
@@ -43,9 +45,7 @@ values."
      semantic
      spell-checking
      syntax-checking
-     unimpaired
 
-     fasd
      search-engine
      shell
      spacemacs-layouts
@@ -284,11 +284,6 @@ in `dotspacemacs/user-config'."
    ;; Python
    anaconda-mode-server-script "/home/stolyaroleh/.local/lib/python2.7/site-packages/anaconda_mode.py"
    )
-
-  ;; Haskell Refactoring
-  (add-to-load-path "/home/stolyaroleh/.stack/snapshots/x86_64-linux/lts-5.15/7.10.3/share/x86_64-linux-ghc-7.10.3/HaRe-0.8.2.3/elisp")
-  (require 'hare)
-  (autoload 'hare-init "hare" nil t)
   )
 
 (defun dotspacemacs/user-config ()
@@ -322,8 +317,13 @@ layers configuration. You are free to put any user code."
  ;; If there is more than one, they won't work right.
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "google-chrome")
+ '(flycheck-erlang-include-path (quote ("../include")))
+ '(flycheck-erlang-library-path (quote ("../src")))
  '(golden-ratio-mode t)
  '(haskell-compile-command "stack build")
+ '(package-selected-packages
+   (quote
+    (yapfify yaml-mode xterm-color ws-butler winum which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org stickyfunc-enhance srefactor spaceline powerline smeargle shell-pop restart-emacs ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox spinner orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-plus-contrib org-mime org-download org-bullets open-junk-file omnisharp shut-up nix-mode neotree multi-term move-text mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls macrostep lua-mode lorem-ipsum livid-mode live-py-mode linum-relative link-hint json-mode json-snatcher json-reformat js2-refactor multiple-cursors js-doc intero insert-shebang indent-guide hydra hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-nixos-options helm-mode-manager helm-make projectile helm-hoogle helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck pkg-info epl flx-ido flx fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit ghub treepy let-alist graphql with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight eshell-z eshell-prompt-extras esh-help erlang engine-mode elisp-slime-nav ein skewer-mode request-deferred websocket request deferred js2-mode simple-httpd dumb-jump disaster diminish diff-hl define-word cython-mode csharp-mode company-tern dash-functional tern company-statistics company-shell company-nixos-options nixos-options company-ghci company-ghc ghc haskell-mode company-cabal company-c-headers company-auctex company-anaconda company column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-dictionary auto-compile packed auctex anaconda-mode pythonic f dash s aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup)))
  '(safe-local-variable-values
    (quote
     ((haskell-indent-spaces . 2)
