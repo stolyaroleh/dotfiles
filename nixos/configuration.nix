@@ -1,16 +1,17 @@
-{ config, pkgs, ... }:
+{ config
+, pkgs
+, ...
+}:
 {
-  imports =
-    [
-      /etc/nixos/hardware-configuration.nix
-    ];
-
-  nix.nixPath = [
-    "nixpkgs=/etc/nixos/nixpkgs"
-    "nixos-config=/etc/nixos/configuration.nix"
+  imports = [
+    /etc/nixos/hardware-configuration.nix
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+  };
+
+  nix = import ./nix.nix;
 
   hardware.pulseaudio = {
     enable = true;
@@ -25,8 +26,11 @@
 
   networking = {
     hostName = "jarvis";
-    networkmanager.enable = true;
     firewall.enable = true;
+    firewall.allowedTCPPorts = [
+      3000
+    ];
+    networkmanager.enable = true;
   };
 
   i18n = {
@@ -40,80 +44,9 @@
     timeZone = "Europe/London";
   };
 
-  environment.systemPackages = with pkgs; [
-    google-chrome
-    vlc
+  environment.systemPackages = import ./packages.nix;
 
-    # screenshots
-    flameshot
-
-    # drawing
-    gimp
-    krita
-    libwacom
-
-    # shell
-    bash
-    fasd
-    fzf
-    kitty
-    zsh
-
-    # mate
-    mate.mate-themes
-
-    # theorem proving
-    lean
-
-    # code
-    binutils
-    cloc
-    emacs
-    gcc7
-    git
-    gnumake
-    jetbrains.pycharm-community
-    jetbrains.clion
-    python36
-    rustup
-    tldr
-    vim
-    vscode
-
-    # fonts
-    fira-code
-    hasklig
-    source-code-pro
-
-    # automation
-    xdotool
-    xorg.xev
-
-    # smarkets and shit
-    minikube
-    kubectl
-    kubernetes-helm
-
-    # system
-    coreutils
-    curl
-    findutils
-    file
-    fuse
-    exfat
-    ffmpeg
-    htop
-    libnotify
-    ntfs3g
-    psmisc
-    stow
-    tree
-    udiskie
-    wget
-    zip unzip
-  ];
-
-  users.extraUsers."oleh" = {
+  users.users.oleh = {
     description = "Oleh Stolyar";
     isNormalUser = true;
 
