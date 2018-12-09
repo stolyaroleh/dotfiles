@@ -10,10 +10,11 @@ import qualified XMonad.Actions.Search          as S
 import           XMonad.Actions.SinkAll         (sinkAll)
 import qualified XMonad.Actions.Submap          as SM
 import           XMonad.Actions.WorkspaceNames  (renameWorkspace)
-import           XMonad.Config.Mate             (mateConfig)
+import           XMonad.Config.Kde              (kdeConfig)
 import           XMonad.Hooks.EwmhDesktops      (fullscreenEventHook)
 import           XMonad.Hooks.ManageDocks       (docks, manageDocks)
 import           XMonad.Hooks.ManageHelpers     (doFullFloat, isInProperty, isFullscreen)
+import           XMonad.Hooks.SetWMName         (setWMName)
 import           XMonad.Layout
 import           XMonad.Layout.Grid
 import           XMonad.Layout.NoBorders        (smartBorders)
@@ -49,13 +50,10 @@ volumeKeys =
 appKeys :: [Keybinding]
 appKeys = map start
  [ (xK_b, "google-chrome-stable")
- , (xK_p, launcher)
  ]
  where
   start :: (KeySym, String) -> Keybinding
   start (key, app) = ((super .|. shiftMask, key), safeSpawn app [])
-  launcher :: String
-  launcher = "synapse"
 
 promptKeys :: [Keybinding]
 promptKeys =
@@ -129,32 +127,36 @@ myProjects =
   ]
 
 myWorkspaces =
+  repeat 3 "code" ++
   [ "gen"
   , "web"
   , "email"
   , "vlc"
   , "config"
   ]
-  ++ repeat 3 "code"
   where
     repeat n tag =
       [tag ++ "-" ++ show index | index <- [1..n]]
 
 myManageHook = composeAll
-  [ manageHook mateConfig
+  [ manageHook kdeConfig
   , manageDocks
+  , isNotification --> doFloat
+  , isKrunner --> doFloat
   , isFullscreen --> doFullFloat
   ]
   where
-    isJetbrainsIDE :: Query Bool
+    isNotification = className =? "plasmashell"
+    isKrunner = className =? "krunner"
     isJetbrainsIDE =
       className =? "jetbrains-pycharm-ce" <||>
       className =? "jetbrains-clion"
 
-myConfig = docks $ mateConfig
+myConfig = docks $ kdeConfig
   { modMask = super
   , borderWidth = 0
   , handleEventHook = fullscreenEventHook
+  , startupHook = setWMName "LG3D"
   , layoutHook = myLayout
   , manageHook = myManageHook
   , terminal = "kitty"
