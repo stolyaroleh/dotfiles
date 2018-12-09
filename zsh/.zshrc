@@ -2,11 +2,11 @@
 disable r
 
 # TODO: antigen-hs everything
-source $HOME/dotfiles/zsh/alias-tips/alias-tips.plugin.zsh
-source $HOME/dotfiles/zsh/autoenv/activate.sh
-source $HOME/dotfiles/zsh/prezto/init.zsh
+source "$HOME/dotfiles/zsh/alias-tips/alias-tips.plugin.zsh"
+source "$HOME/dotfiles/zsh/autoenv/activate.sh"
+source "$HOME/dotfiles/zsh/prezto/init.zsh"
 
-source $HOME/.workrc
+source "$HOME/.workrc"
 
 # fzf
 source "$FZF_PATH/share/fzf/completion.zsh"
