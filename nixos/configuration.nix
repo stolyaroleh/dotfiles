@@ -64,20 +64,19 @@
     ];
   };
 
-  programs.zsh = {
-    enable = true;
-    shellInit = ''
-      export PATH=$PATH:~/.local/bin
-      export FZF_PATH="${pkgs.fzf.bin}"
-    '';
+  programs = {
+    sysdig.enable = true;
+
+    zsh = {
+      enable = true;
+      shellInit = ''
+        export PATH=$PATH:~/.local/bin
+        export FZF_PATH="${pkgs.fzf.bin}"
+      '';
+    };
   };
 
   virtualisation.docker.enable = true;
-  virtualisation.virtualbox = {
-    guest.enable = true;
-    host.enable = true;
-    host.enableHardening = false;
-  };
 
   services.openssh.enable = true;
 

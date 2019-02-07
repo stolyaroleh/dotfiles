@@ -7,6 +7,7 @@ let
   };
 in
   (with stable; [
+    google-chrome
     vlc
 
     # screenshots
@@ -31,13 +32,15 @@ in
     binutils
     cloc
     emacs
-    gcc7
     git
     gnumake
+    jetbrains.pycharm-community
+    jetbrains.clion
     python36
     rustup
     tldr
     vim
+    vscode
 
     # fonts
     fira-code
@@ -70,9 +73,4 @@ in
     zip unzip
   ]) ++
   (with unstable; [
-    google-chrome
-
-    jetbrains.pycharm-community
-    jetbrains.clion
-    vscode
   ])
