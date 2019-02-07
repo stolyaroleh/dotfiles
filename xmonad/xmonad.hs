@@ -141,11 +141,11 @@ myWorkspaces =
 myManageHook = composeAll
   [ manageHook kdeConfig
   , manageDocks
-  , isNotification --> doFloat
-  , isKrunner --> doFloat
+  , shouldFloat --> doFloat
   , isFullscreen --> doFullFloat
   ]
   where
+    shouldFloat = isNotification <||> isKrunner
     isNotification = className =? "plasmashell"
     isKrunner = className =? "krunner"
     isJetbrainsIDE =
