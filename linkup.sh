@@ -16,6 +16,9 @@ stow --target=$HOME/.config/plasma-workspace plasma-workspace
 mkdir -p $HOME/.config/vscode
 stow --target=$HOME/.config/vscode vscode
 
+mkdir -p $HOME/.ghc
+stow --target=$HOME/.ghc ghc
+
 stow git
 stow intellij
 stow spacemacs
