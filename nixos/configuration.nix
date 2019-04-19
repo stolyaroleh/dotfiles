@@ -101,6 +101,7 @@
       xmonad.enable = true;
     };
 
+    libinput.enable = true;
     wacom.enable = true;
   };
 
