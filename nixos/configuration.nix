@@ -7,20 +7,20 @@
     /etc/nixos/hardware-configuration.nix
   ];
 
+  nix = import ./nix;
   nixpkgs = {
     config.allowUnfree = true;
   };
 
-  nix = import ./nix.nix;
-
-  hardware.pulseaudio = {
-    enable = true;
-    support32Bit = true;
+  hardware = {
+    pulseaudio = {
+      enable = true;
+      support32Bit = true;
+    };
+    opengl.driSupport32Bit = true;
   };
 
-  # Enable full acceleration in 32-bit programs (Wine)
-  hardware.opengl.driSupport32Bit = true;
-
+  boot.earlyVconsoleSetup = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -34,9 +34,10 @@
   };
 
   i18n = {
-    consoleFont = "Lat2-Terminus16";
+    consoleFont = "ter-132n";
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
+    consolePackages = [ pkgs.terminus_font ];
   };
 
   time = {
@@ -95,6 +96,7 @@
 
     displayManager = {
       sddm.enable = true;
+      sddm.enableHidpi = true;
     };
 
     windowManager = {

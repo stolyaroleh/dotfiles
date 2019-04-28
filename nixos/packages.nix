@@ -1,17 +1,21 @@
 let
-  stable = import <nixpkgs> {
+  sources = import ./nix/sources.nix;
+  stable = import sources.stable {
     config.allowUnfree = true;
   };
-  unstable = import <unstable> {
+  unstable = import sources.unstable {
     config.allowUnfree = true;
   };
+  niv = (import sources.niv {}).niv;
 in
+  # nix-channel replacement
+  [ niv ] ++
   (with stable; [
     google-chrome
     vlc
 
     # screenshots
-    flameshot
+    spectacle
 
     # drawing
     gimp

@@ -1,0 +1,48 @@
+{
+    "stable": {
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/8ea36d732567c80b2d11eb029e10400fe85ca786.tar.gz",
+        "owner": "NixOS",
+        "branch": "nixos-19.03",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "nixpkgs-channels",
+        "type": "tarball",
+        "sha256": "1d59i55qwqd76n2d0hr1si26q333ydizkd91h8lfczb00xnr5pqn",
+        "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
+        "rev": "8ea36d732567c80b2d11eb029e10400fe85ca786"
+    },
+    "hie-nix": {
+        "homepage": "",
+        "url": "https://github.com/domenkozar/hie-nix/archive/3568848019da43c4581e931fcb7a6cb8b0f33079.tar.gz",
+        "owner": "domenkozar",
+        "branch": "master",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "hie-nix",
+        "type": "tarball",
+        "sha256": "00zs610p56l6afbizx2xbhc3wsr5v3fnwiwcs4hzk7myyzl2k4qc",
+        "description": "Nix packages for Haskell IDE Engine",
+        "rev": "3568848019da43c4581e931fcb7a6cb8b0f33079"
+    },
+    "unstable": {
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/1fc591f9a5bd1b016b5d66dfab29560073955a14.tar.gz",
+        "owner": "NixOS",
+        "branch": "nixos-unstable",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "nixpkgs-channels",
+        "type": "tarball",
+        "sha256": "1ij5x1qw486rbih7xh2c01s60c3zblj6ad1isf5y99sh47jcq76c",
+        "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
+        "rev": "1fc591f9a5bd1b016b5d66dfab29560073955a14"
+    },
+    "niv": {
+        "homepage": "https://github.com/nmattia/niv",
+        "url": "https://github.com/nmattia/niv/archive/a489b65a5c3a29983701069d1ce395b23d9bde64.tar.gz",
+        "owner": "nmattia",
+        "branch": "master",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "niv",
+        "type": "tarball",
+        "sha256": "0mvh2x4l4f3nbgzzygk317nkzbyj3xgnczivgdra4q82dg8x77ka",
+        "description": "Easy dependency management for Nix projects",
+        "rev": "a489b65a5c3a29983701069d1ce395b23d9bde64"
+    }
+}
