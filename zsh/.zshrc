@@ -4,9 +4,6 @@ disable r
 # alias-tips
 source "$HOME/dotfiles/zsh/alias-tips/alias-tips.plugin.zsh"
 
-# autoenv
-source "$HOME/dotfiles/zsh/autoenv/activate.sh"
-
 # prezto
 source "$HOME/dotfiles/zsh/prezto/init.zsh"
 
