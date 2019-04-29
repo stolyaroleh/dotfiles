@@ -45,6 +45,12 @@
     timeZone = "Europe/London";
   };
 
+  fonts.fonts = with pkgs; [
+    fira-code
+    hasklig
+    source-code-pro
+  ];
+
   environment.systemPackages = import ./packages.nix;
 
   users.users.oleh = {
@@ -119,5 +125,5 @@
   };
 
   system.autoUpgrade.enable = true;
-  system.stateVersion = "18.09";
+  system.stateVersion = "19.03";
 }
