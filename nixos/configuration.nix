@@ -4,13 +4,9 @@
 }:
 {
   imports = [
+    ./nix
     /etc/nixos/hardware-configuration.nix
   ];
-
-  nix = import ./nix;
-  nixpkgs = {
-    config.allowUnfree = true;
-  };
 
   hardware = {
     pulseaudio = {
