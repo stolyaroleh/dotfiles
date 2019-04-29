@@ -14,9 +14,6 @@ in
     google-chrome
     vlc
 
-    # screenshots
-    spectacle
-
     # drawing
     gimp
     krita
@@ -38,18 +35,15 @@ in
     emacs
     git
     gnumake
-    jetbrains.pycharm-community
-    jetbrains.clion
     python36
     rustup
     tldr
     vim
-    vscode
 
-    # fonts
-    fira-code
-    hasklig
-    source-code-pro
+    # kde
+    ark       # archive
+    spectacle # screenshots
+    gwenview  # image viewer
 
     # automation
     xdotool
@@ -77,4 +71,8 @@ in
     zip unzip
   ]) ++
   (with unstable; [
+    bat
+    jetbrains.pycharm-community
+    jetbrains.clion
+    vscode
   ])

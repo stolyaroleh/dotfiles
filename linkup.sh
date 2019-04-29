@@ -7,6 +7,9 @@ pushd $SCRIPTPATH
 sudo mkdir -p /etc/nixos && sudo chown $USER /etc/nixos
 stow --target=/etc/nixos nixos
 
+mkdir -p $HOME/.config/bat
+stow --target=$HOME/.config/bat bat
+
 mkdir -p $HOME/.config/kitty
 stow --target=$HOME/.config/kitty kitty
 
