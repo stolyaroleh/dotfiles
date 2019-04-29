@@ -25,6 +25,7 @@ stow --target=$HOME/.ghc ghc
 stow git
 stow intellij
 stow spacemacs
+stow ssh
 stow xmonad
 stow zsh
 
