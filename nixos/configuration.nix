@@ -49,6 +49,7 @@
   ];
 
   environment.systemPackages = import ./packages.nix;
+  services.dbus.socketActivated = true;
 
   users.users.oleh = {
     description = "Oleh Stolyar";
