@@ -7,3 +7,4 @@ xmonad
 !xmonad/*.nix
 !xmonad/.xmonad/build
 
+nixos/work.nix

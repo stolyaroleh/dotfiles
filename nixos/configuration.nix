@@ -1,4 +1,5 @@
 { config
+, lib
 , pkgs
 , ...
 }:
@@ -6,7 +7,7 @@
   imports = [
     ./nix
     /etc/nixos/hardware-configuration.nix
-  ];
+  ] ++ lib.optional (builtins.pathExists ./work.nix) ./work.nix;
 
   hardware = {
     pulseaudio = {
