@@ -1,11 +1,13 @@
 [user]
 	name = Oleh Stolyar
-	email = oleh.stolyar@smarkets.com
+	email = stolyar.oleh@gmail.com
 [alias]
 	lol = log --oneline --graph --decorate
 	schwifty = push --set-upstream origin HEAD
 [push]
 	default = simple
+[rebase]
+	autosquash = true
 [core]
 	editor = vim
 [help]
