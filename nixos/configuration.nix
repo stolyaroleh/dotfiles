@@ -14,7 +14,20 @@
       enable = true;
       support32Bit = true;
     };
-    opengl.driSupport32Bit = true;
+    opengl = {
+      enable = true;
+      driSupport32Bit = true;
+      extraPackages32 = with pkgs; [
+        vaapiIntel
+        vaapiVdpau
+        libvdpau-va-gl
+        intel-media-driver
+      ];
+    };
+    trackpoint = {
+      enable = true;
+      emulateWheel = true;
+    };
   };
 
   boot.earlyVconsoleSetup = true;
@@ -28,6 +41,7 @@
       3000
     ];
     networkmanager.enable = true;
+    networkmanager.wifi.powersave = true;
   };
 
   i18n = {
@@ -70,6 +84,8 @@
   };
 
   programs = {
+    ssh.startAgent = true;
+
     sysdig.enable = true;
 
     zsh = {
