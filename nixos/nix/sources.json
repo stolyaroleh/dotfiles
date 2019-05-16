@@ -1,48 +1,48 @@
 {
     "stable": {
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/8ea36d732567c80b2d11eb029e10400fe85ca786.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/c21f08bfedde0f7d00a5ebc85455fb28b9037932.tar.gz",
         "owner": "NixOS",
         "branch": "nixos-19.03",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "nixpkgs-channels",
         "type": "tarball",
-        "sha256": "1d59i55qwqd76n2d0hr1si26q333ydizkd91h8lfczb00xnr5pqn",
+        "sha256": "0sndhal0a61zzgc8k2lhba356mkrgq0hwf5aa61f6kvpvn4isjmg",
         "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
-        "rev": "8ea36d732567c80b2d11eb029e10400fe85ca786"
+        "rev": "c21f08bfedde0f7d00a5ebc85455fb28b9037932"
     },
     "hie-nix": {
         "homepage": "",
-        "url": "https://github.com/domenkozar/hie-nix/archive/3568848019da43c4581e931fcb7a6cb8b0f33079.tar.gz",
+        "url": "https://github.com/domenkozar/hie-nix/archive/36ffcc1d7e194fe4f6b85722f218fa89bd5098bf.tar.gz",
         "owner": "domenkozar",
         "branch": "master",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "hie-nix",
         "type": "tarball",
-        "sha256": "00zs610p56l6afbizx2xbhc3wsr5v3fnwiwcs4hzk7myyzl2k4qc",
+        "sha256": "03393r7ssycyzp47azg99v8rlc6nckqsrs55zafdy7w1g8bfh0h6",
         "description": "Nix packages for Haskell IDE Engine",
-        "rev": "3568848019da43c4581e931fcb7a6cb8b0f33079"
+        "rev": "36ffcc1d7e194fe4f6b85722f218fa89bd5098bf"
     },
     "unstable": {
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/1fc591f9a5bd1b016b5d66dfab29560073955a14.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/bc9df0f66110039e495b6debe3a6cda4a1bb0fed.tar.gz",
         "owner": "NixOS",
         "branch": "nixos-unstable",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "nixpkgs-channels",
         "type": "tarball",
-        "sha256": "1ij5x1qw486rbih7xh2c01s60c3zblj6ad1isf5y99sh47jcq76c",
+        "sha256": "0y2w259j0vqiwjhjvlbsaqnp1nl2zwz6sbwwhkrqn7k7fmhmxnq1",
         "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
-        "rev": "1fc591f9a5bd1b016b5d66dfab29560073955a14"
+        "rev": "bc9df0f66110039e495b6debe3a6cda4a1bb0fed"
     },
     "niv": {
         "homepage": "https://github.com/nmattia/niv",
-        "url": "https://github.com/nmattia/niv/archive/a489b65a5c3a29983701069d1ce395b23d9bde64.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/5d9e3a5f7d51765f0369a4682770ec57d863f19f.tar.gz",
         "owner": "nmattia",
         "branch": "master",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "niv",
         "type": "tarball",
-        "sha256": "0mvh2x4l4f3nbgzzygk317nkzbyj3xgnczivgdra4q82dg8x77ka",
+        "sha256": "0x7d2rb89h0h7g8sjsgax6ncvf2wwbmxkgvlfi53d00kxj6kfzba",
         "description": "Easy dependency management for Nix projects",
-        "rev": "a489b65a5c3a29983701069d1ce395b23d9bde64"
+        "rev": "5d9e3a5f7d51765f0369a4682770ec57d863f19f"
     }
 }
