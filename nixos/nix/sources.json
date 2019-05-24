@@ -33,6 +33,30 @@
         "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
         "rev": "bc9df0f66110039e495b6debe3a6cda4a1bb0fed"
     },
+    "direnv": {
+        "homepage": "http://direnv.net",
+        "url": "https://github.com/direnv/direnv/archive/4d99f12f158f7f9923aa311824929da38c7a9cfc.tar.gz",
+        "owner": "direnv",
+        "branch": "master",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "direnv",
+        "type": "tarball",
+        "sha256": "0s348fbzrkr1p40vqxb8z87rqz5w0n6whg8h598hv943kni6sy35",
+        "description": "Unclutter your .profile",
+        "rev": "4d99f12f158f7f9923aa311824929da38c7a9cfc"
+    },
+    "lorri": {
+        "homepage": "",
+        "url": "https://github.com/target/lorri/archive/094a903d19eb652a79ad6e7db6ad1ee9ad78d26c.tar.gz",
+        "owner": "target",
+        "branch": "rolling-release",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "lorri",
+        "type": "tarball",
+        "sha256": "0y9y7r16ki74fn0xavjva129vwdhqi3djnqbqjwjkn045i4z78c8",
+        "description": "Your project's nix-env",
+        "rev": "094a903d19eb652a79ad6e7db6ad1ee9ad78d26c"
+    },
     "niv": {
         "homepage": "https://github.com/nmattia/niv",
         "url": "https://github.com/nmattia/niv/archive/5d9e3a5f7d51765f0369a4682770ec57d863f19f.tar.gz",

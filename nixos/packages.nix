@@ -6,10 +6,16 @@ let
   unstable = import sources.unstable {
     config.allowUnfree = true;
   };
+  direnv = import sources.direnv { pkgs = stable; };
+  lorri = import sources.lorri { pkgs = stable; src = sources.lorri; };
+  # nix-channel replacement
   niv = (import sources.niv {}).niv;
 in
-  # nix-channel replacement
-  [ niv ] ++
+  [
+    direnv
+    lorri
+    niv
+  ] ++
   (with stable; [
     google-chrome
     vlc
@@ -28,6 +34,11 @@ in
 
     # theorem proving
     lean
+
+    # bazel
+    bazel
+    buildifier
+    buildozer
 
     # code
     binutils

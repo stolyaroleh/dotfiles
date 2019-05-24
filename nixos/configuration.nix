@@ -84,6 +84,10 @@
   };
 
   programs = {
+    bash.interactiveShellInit = ''
+      eval "$(direnv hook bash)"
+    '';
+
     ssh.startAgent = true;
 
     sysdig.enable = true;
@@ -94,11 +98,15 @@
         export PATH=$PATH:~/.local/bin
         export FZF_PATH="${pkgs.fzf.bin}"
       '';
+      interactiveShellInit = ''
+        eval "$(direnv hook zsh)"
+      '';
     };
   };
 
   virtualisation.docker.enable = true;
 
+  services.teamviewer.enable = true;
   services.openssh.enable = true;
 
   services.xserver = {

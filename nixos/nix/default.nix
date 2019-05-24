@@ -8,16 +8,19 @@ in
 
       binaryCaches = [
         "https://cache.nixos.org"
-        "https://hie-nix.cachix.org"
+        "https://all-hies.cachix.org"
       ];
       binaryCachePublicKeys = [
-        "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
+        "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k="
       ];
+
       trustedBinaryCaches = [
         "https://cache.nixos.org"
-        "https://hie-nix.cachix.org"
+        "https://all-hies.cachix.org"
       ];
       trustedUsers = [ "root" "oleh" ];
+
+      sshServe.enable = true;
 
       extraOptions = ''
         # Start collecting garbage when free space drops below 20GB..

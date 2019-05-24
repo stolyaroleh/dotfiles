@@ -25,4 +25,5 @@ alias gs='git status'
 alias gd='git diff --word-diff=color'
 alias gds='git diff --word-diff=color --staged'
 
-export TERM=xterm-color
+export EDITOR=vim
+export TERM=xterm-256color
