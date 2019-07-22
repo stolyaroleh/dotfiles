@@ -7,7 +7,7 @@ let
     config.allowUnfree = true;
   };
   direnv = import sources.direnv { pkgs = stable; };
-  lorri = import sources.lorri { pkgs = stable; src = sources.lorri; };
+  lorri = import sources.lorri {};
   # nix-channel replacement
   niv = (import sources.niv {}).niv;
 in
@@ -53,8 +53,9 @@ in
 
     # kde
     ark       # archive
-    spectacle # screenshots
     gwenview  # image viewer
+    okular    # pdf viewer
+    spectacle # screenshots
 
     # automation
     xdotool

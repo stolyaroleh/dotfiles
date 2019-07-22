@@ -108,6 +108,11 @@
 
   services.teamviewer.enable = true;
   services.openssh.enable = true;
+  services.redshift = {
+    enable = true;
+    provider = "geoclue2";
+    brightness.night = "0.7";
+  };
 
   services.xserver = {
     enable = true;
@@ -143,6 +148,37 @@
     serviceConfig = {
       ExecStart = "${pkgs.xbanish}/bin/xbanish";
       Restart = "always";
+    };
+  };
+
+  systemd.user.sockets.lorri = {
+    enable = true;
+    description = "lorri daemon";
+    socketConfig = {
+      ListenStream = "%t/lorri/daemon.socket";
+    };
+    wantedBy = [ "sockets.target" ];
+  };
+
+  systemd.user.services.lorri = {
+    enable = true;
+    description = "lorri daemon";
+    requires = [ "lorri.socket" ];
+    after = [ "lorri.socket" ];
+    environment = {
+      RUST_BACKTRACE = "1";
+    };
+    serviceConfig = {
+      ExecStart =
+        let
+          sources = import ./nix/sources.nix;
+          lorri = import sources.lorri {};
+        in
+          "${lorri}/bin/lorri daemon";
+      PrivateTmp = true;
+      ProtectSystem = "strict";
+      WorkingDirectory = "%h";
+      Restart = "on-failure";
     };
   };
 

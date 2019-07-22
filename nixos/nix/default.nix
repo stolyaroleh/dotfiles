@@ -9,14 +9,17 @@ in
       binaryCaches = [
         "https://cache.nixos.org"
         "https://all-hies.cachix.org"
+        "https://static-haskell-nix.cachix.org"
       ];
       binaryCachePublicKeys = [
         "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k="
+        "static-haskell-nix.cachix.org-1:Q17HawmAwaM1/BfIxaEDKAxwTOyRVhPG5Ji9K3+FvUU="
       ];
 
       trustedBinaryCaches = [
         "https://cache.nixos.org"
         "https://all-hies.cachix.org"
+        "https://static-haskell-nix.cachix.org"
       ];
       trustedUsers = [ "root" "oleh" ];
 
