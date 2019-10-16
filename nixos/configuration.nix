@@ -96,7 +96,7 @@
       enable = true;
       shellInit = ''
         export PATH=$PATH:~/.local/bin
-        export FZF_PATH="${pkgs.fzf.bin}"
+        export FZF_PATH="${pkgs.fzf}"
       '';
       interactiveShellInit = ''
         eval "$(direnv hook zsh)"
@@ -106,11 +106,12 @@
 
   virtualisation.docker.enable = true;
 
+  location.provider = "geoclue2";
+
   services.teamviewer.enable = true;
   services.openssh.enable = true;
   services.redshift = {
     enable = true;
-    provider = "geoclue2";
     brightness.night = "0.7";
   };
 

@@ -11,12 +11,12 @@ let
   # nix-channel replacement
   niv = (import sources.niv {}).niv;
 in
-  [
-    direnv
-    lorri
-    niv
-  ] ++
-  (with stable; [
+[
+  direnv
+  lorri
+  niv
+] ++ (
+  with stable; [
     google-chrome
     vlc
 
@@ -41,7 +41,6 @@ in
     buildozer
 
     # code
-    binutils
     cloc
     emacs
     git
@@ -52,10 +51,11 @@ in
     vim
 
     # kde
-    ark       # archive
-    gwenview  # image viewer
-    okular    # pdf viewer
-    spectacle # screenshots
+    kdeApplications.ark # archive
+    kdeApplications.gwenview # image viewer
+    kdeApplications.kdialog
+    kdeApplications.okular # pdf viewer
+    kdeApplications.spectacle # screenshots
 
     # automation
     xdotool
@@ -80,11 +80,14 @@ in
     tree
     udiskie
     wget
-    zip unzip
-  ]) ++
-  (with unstable; [
+    zip
+    unzip
+  ]
+) ++ (
+  with unstable; [
     bat
     jetbrains.pycharm-community
     jetbrains.clion
     vscode
-  ])
+  ]
+)
