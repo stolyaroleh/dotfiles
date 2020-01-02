@@ -27,6 +27,7 @@ in
 
     # shell
     bash
+    bat
     fasd
     fzf
     kitty
@@ -45,6 +46,7 @@ in
     emacs
     git
     gnumake
+    neovim
     python36
     rustup
     tldr
@@ -87,7 +89,6 @@ in
   ]
 ) ++ (
   with unstable; [
-    bat
     jetbrains.pycharm-community
     jetbrains.clion
     vscode

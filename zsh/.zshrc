@@ -27,3 +27,5 @@ alias gds='git diff --word-diff=color --staged'
 
 export EDITOR=vim
 export TERM=xterm-256color
+
+alias cat='bat --decorations=never'
