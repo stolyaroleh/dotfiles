@@ -58,6 +58,7 @@
 
   fonts.fonts = with pkgs; [
     fira-code
+    google-fonts
     hasklig
     source-code-pro
   ];
@@ -105,6 +106,10 @@
   };
 
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host = {
+    enable = true;
+    enableExtensionPack = true;
+  };
 
   location.provider = "geoclue2";
 
@@ -112,15 +117,14 @@
   services.openssh.enable = true;
   services.redshift = {
     enable = true;
-    brightness.night = "0.7";
   };
 
   services.xserver = {
     enable = true;
     layout = "us,ru,ua";
 
-    # caps lock -> ctrl
-    xkbOptions = "ctrl:nocaps";
+    # caps lock -> super
+    xkbOptions = "caps:super";
 
     desktopManager = {
       default = "plasma5";

@@ -54,6 +54,8 @@ in
     kdeApplications.ark # archive
     kdeApplications.gwenview # image viewer
     kdeApplications.kdialog
+    konversation # IRC client
+    ktorrent
     kdeApplications.okular # pdf viewer
     kdeApplications.spectacle # screenshots
 
