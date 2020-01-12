@@ -10,11 +10,17 @@ let
   lorri = import sources.lorri {};
   # nix-channel replacement
   niv = (import sources.niv {}).niv;
+  wine = unstable.wineWowPackages.staging;
+  winetricks = unstable.winetricks.override {
+    inherit wine;
+  };
 in
 [
   direnv
   lorri
   niv
+  wine
+  winetricks
 ] ++ (
   with stable; [
     google-chrome
@@ -45,12 +51,16 @@ in
     cloc
     emacs
     git
+    gitAndTools.hub
     gnumake
     neovim
     python36
     rustup
     tldr
     vim
+
+    # games
+    vulkan-loader
 
     # kde
     kdeApplications.ark # archive

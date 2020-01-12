@@ -10,9 +10,18 @@
   ] ++ lib.optional (builtins.pathExists ./work.nix) ./work.nix;
 
   hardware = {
+    bluetooth = {
+      enable = true;
+      extraConfig = "
+        [General]
+        Enable=Source,Sink,Media,Socket
+      ";
+    };
     pulseaudio = {
       enable = true;
       support32Bit = true;
+      extraModules = [ pkgs.pulseaudio-modules-bt ];
+      package = pkgs.pulseaudioFull;
     };
     opengl = {
       enable = true;
@@ -115,6 +124,7 @@
 
   services.teamviewer.enable = true;
   services.openssh.enable = true;
+  services.throttled.enable = true;
   services.redshift = {
     enable = true;
   };
@@ -153,37 +163,6 @@
     serviceConfig = {
       ExecStart = "${pkgs.xbanish}/bin/xbanish";
       Restart = "always";
-    };
-  };
-
-  systemd.user.sockets.lorri = {
-    enable = true;
-    description = "lorri daemon";
-    socketConfig = {
-      ListenStream = "%t/lorri/daemon.socket";
-    };
-    wantedBy = [ "sockets.target" ];
-  };
-
-  systemd.user.services.lorri = {
-    enable = true;
-    description = "lorri daemon";
-    requires = [ "lorri.socket" ];
-    after = [ "lorri.socket" ];
-    environment = {
-      RUST_BACKTRACE = "1";
-    };
-    serviceConfig = {
-      ExecStart =
-        let
-          sources = import ./nix/sources.nix;
-          lorri = import sources.lorri {};
-        in
-          "${lorri}/bin/lorri daemon";
-      PrivateTmp = true;
-      ProtectSystem = "strict";
-      WorkingDirectory = "%h";
-      Restart = "on-failure";
     };
   };
 

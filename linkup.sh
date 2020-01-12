@@ -22,6 +22,7 @@ stow --target=$HOME/.config/vscode vscode
 mkdir -p $HOME/.ghc
 stow --target=$HOME/.ghc ghc
 
+stow direnv
 stow git
 stow intellij
 stow spacemacs
